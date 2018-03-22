@@ -19,6 +19,6 @@ module.exports = {
     "Createtime":"创建时间",
     "DeleteTips":"你确定要删除该记录?",
     "CreateTitile":"新增",
-    "UpdateTitile":"更新"
+    "UpdateTitile":"编辑"
   }
 }

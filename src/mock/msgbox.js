@@ -9,7 +9,7 @@ let msgdata = Mock.mock({
     {
       id: '@id',
       msgSendRegesId: 2211630184,
-      'msgType|0-3':0 ,
+      'msgType|1':['0','1','2','3'] ,
       msgCreateTime: '@datetime',
       msgSendMsgContent: '@cparagraph',
       msgAuditingUserName: '@cname',
@@ -19,8 +19,8 @@ let msgdata = Mock.mock({
       msgSendTime: '@datetime',
       msgCreateUserName: '@cname',
       msgAuditingTime: '@datetime',
-      //'msgVIN|1': [[LLNC6ADB4HA006807],[LLNC6ADB4HA006808],[LLNC6ADB4HA006809],[LLNC6ADB4HA006801],[LLNC6ADB4HA006803],[LLNC6ADB4HA006805]],
-      'msgVIN|1': ['LLNC6ADB4HA006807','LLNC6ADB4HA006808','LLNC6ADB4HA006809','LLNC6ADB4HA006801','LLNC6ADB4HA006803','LLNC6ADB4HA006805'],
+      'msgVIN|1': [['LLNC6ADB4HA006807'],['LLNC6ADB4HA006808'],['LLNC6ADB4HA006809'],['LLNC6ADB4HA006801'],['LLNC6ADB4HA006803'],['LLNC6ADB4HA006805']],
+      //'msgVIN|1': ['LLNC6ADB4HA006807','LLNC6ADB4HA006808','LLNC6ADB4HA006809','LLNC6ADB4HA006801','LLNC6ADB4HA006803','LLNC6ADB4HA006805'],
       msgSendMsgTitle: '@ctitle'
     }
   ],
@@ -41,9 +41,9 @@ module.exports = {
       if ({}.hasOwnProperty.call(other, key)) {
         newData = newData.filter((item) => {
           if ({}.hasOwnProperty.call(item, key)) {
-            if (key === 'address') {//其他条件查询
+            if (key === 'msgType') {//其他条件查询
 
-              return other[key].every(iitem => item[key].indexOf(iitem) > -1)
+              return other[key].every(iitem => item[key] === iitem)
             } else if (key === 'msgCreateTime') {
               const start = new Date(other[key][0]).getTime()
               const end = new Date(other[key][1]).getTime()

@@ -3,12 +3,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import { FilterItem } from 'components'
-import { Form, Button, Row, Col, DatePicker, Input, Cascader, Switch } from 'antd'
+import { Form, Button, Row, Col, DatePicker, Input, Cascader, Switch,Select } from 'antd'
 import city from '../../utils/city'
 import en2ch from '../../utils/en2ch';
 
 const { Search } = Input
 const { RangePicker } = DatePicker
+const { Option } = Select
 
 const ColProps = {
   xs: 24,
@@ -36,9 +37,9 @@ const Filter = ({
   },
 }) => {
   const handleFields = (fields) => {
-    const { createTime } = fields
-    if (createTime.length) {
-      fields.createTime = [createTime[0].format('YYYY-MM-DD'), createTime[1].format('YYYY-MM-DD')]
+    const { msgCreateTime } = fields
+    if (msgCreateTime.length) {
+      fields.msgCreateTime = [msgCreateTime[0].format('YYYY-MM-DD'), msgCreateTime[1].format('YYYY-MM-DD')]
     }
     return fields
   }
@@ -70,14 +71,14 @@ const Filter = ({
     fields = handleFields(fields)
     onFilterChange(fields)
   }
-  const { msgSendMsgTitle, address } = filter
+  const { msgSendMsgTitle, msgType } = filter
 
   let initialCreateTime = []
-  if (filter.createTime && filter.createTime[0]) {
-    initialCreateTime[0] = moment(filter.createTime[0])
+  if (filter.msgCreateTime && filter.msgCreateTime[0]) {
+    initialCreateTime[0] = moment(filter.msgCreateTime[0])
   }
-  if (filter.createTime && filter.createTime[1]) {
-    initialCreateTime[1] = moment(filter.createTime[1])
+  if (filter.msgCreateTime && filter.msgCreateTime[1]) {
+    initialCreateTime[1] = moment(filter.msgCreateTime[1])
   }
 
   return (
@@ -85,20 +86,23 @@ const Filter = ({
       <Col {...ColProps} xl={{ span: 4 }} md={{ span: 8 }}>
         {getFieldDecorator('msgSendMsgTitle', { initialValue: msgSendMsgTitle })(<Search placeholder={en2ch.zh.SearchTips} onSearch={handleSubmit} />)}
       </Col>
-      <Col {...ColProps} xl={{ span: 4 }} md={{ span: 8 }} id="addressCascader">
-        {getFieldDecorator('address', { initialValue: address })(<Cascader
-          style={{ width: '100%' }}
-          options={city}
-          placeholder="Please pick an address"
-          onChange={handleChange.bind(null, 'address')}
-          getPopupContainer={() => document.getElementById('addressCascader')}
-        />)}
+      <Col {...ColProps} xl={{ span: 4 }} md={{ span: 8 }} >
+
+          {getFieldDecorator('msgType', { initialValue: "0" })(
+          <Select   onSearch={handleSubmit}>
+              <Option value="0">通知</Option>
+              <Option value="1">提醒</Option>
+              <Option value="2">保养</Option>
+              <Option value="3">其他</Option>
+            </Select>
+          )}
+        
       </Col>
       <Col {...ColProps} xl={{ span: 6 }} md={{ span: 8 }} sm={{ span: 12 }} id="createTimeRangePicker">
         <FilterItem label={en2ch.zh.Createtime}>
-          {getFieldDecorator('createTime', { initialValue: initialCreateTime })(<RangePicker
-            style={{ width: '100%' }}
-            onChange={handleChange.bind(null, 'createTime')}
+          {getFieldDecorator('msgCreateTime', { initialValue: initialCreateTime })(<RangePicker
+            //style={{ width: '100%' }}
+            onChange={handleChange.bind(null, 'msgCreateTime')}
             getCalendarContainer={() => {
               return document.getElementById('createTimeRangePicker')
             }}

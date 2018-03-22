@@ -34,10 +34,27 @@ const List = ({
       title: '标题',
       dataIndex: 'msgSendMsgTitle',
       key: 'msgSendMsgTitle',
+      render: (text, record) => <Link to={`msgbox/${record.id}`}>{text}</Link>,
     }, {
       title: '消息类型',
       dataIndex: 'msgType',
       key: 'msgType',
+      render: text => {
+        switch(text){
+          case "0":
+          return <span>通知</span>
+          break;
+          case "1":
+          return <span>提醒</span>
+          break;
+          case "2":
+          return <span>保养</span>
+          break;
+          case "3":
+          return <span>其他</span>
+          break;
+        }
+      },
     }, {
       title: '创建者',
       dataIndex: 'msgCreateUserName',
@@ -51,7 +68,7 @@ const List = ({
       key: 'operation',
       width: 100,
       render: (text, record) => {
-        return <DropOption onMenuClick={e => handleMenuClick(record, e)} menuOptions={[{ key: '1', name: 'Update' }, { key: '2', name: 'Delete' }]} />
+        return <DropOption onMenuClick={e => handleMenuClick(record, e)} menuOptions={[{ key: '1', name: '编辑' }, { key: '2', name: '删除' }]} />
       },
     },
   ]

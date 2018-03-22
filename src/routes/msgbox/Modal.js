@@ -1,16 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Form, Input, InputNumber, Radio, Modal, Cascader } from 'antd'
+import { Form, Input, InputNumber, Radio, Modal, Cascader, Select,TreeSelect } from 'antd'
 import city from '../../utils/city'
+import { treeData } from '../../tests/user2vin'
 
+//const treeData = treeData
 const FormItem = Form.Item
+const SHOW_PARENT = TreeSelect.SHOW_PARENT
+const { Option } = Select
+
 
 const formItemLayout = {
   labelCol: {
     span: 6,
   },
   wrapperCol: {
-    span: 14,
+    span: 16,
   },
 }
 
@@ -33,7 +38,7 @@ const modal = ({
         ...getFieldsValue(),
         key: item.key,
       }
-      data.address = data.address.join(' ')
+      //data.address = data.address.join(' ')
       onOk(data)
     })
   }
@@ -43,91 +48,69 @@ const modal = ({
     onOk: handleOk,
   }
 
+  const onChange = (value) => {
+    //console.log('onChange ', value, arguments);
+    //this.setState(value );
+    item.msgUserName = value
+  }
+
+  const tProps = {
+      treeData,
+      onChange: onChange,
+      multiple: true,
+      treeCheckable: true,
+      showCheckedStrategy: SHOW_PARENT,
+      searchPlaceholder: '请选择要推送的用户',
+    }
+
   return (
     <Modal {...modalOpts}>
       <Form layout="horizontal">
-        <FormItem label="Name" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('name', {
-            initialValue: item.name,
+        <FormItem label="消息类型" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('msgType',{
+            initialValue: item.msgType,
             rules: [
               {
                 required: true,
               },
             ],
-          })(<Input />)}
+          })(
+            <Select  style={{ width: 120 }} >
+                <Option value="0">通知</Option>
+                <Option value="1">提醒</Option>
+                <Option value="2">保养</Option>
+                <Option value="3">其他</Option>
+            </Select>
+          )}
         </FormItem>
-        <FormItem label="NickName" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('nickName', {
-            initialValue: item.nickName,
+        <FormItem label="标题" hasFeedback labelCol={{span: 6,}} wrapperCol={{span: 16,}}>
+          {getFieldDecorator('msgSendMsgTitle', {
+            initialValue: item.msgSendMsgTitle,
             rules: [
               {
                 required: true,
               },
             ],
-          })(<Input />)}
+          })(<Input type="textarea" />)}
         </FormItem>
-        <FormItem label="Gender" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('isMale', {
-            initialValue: item.isMale,
+        <FormItem label="内容" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('msgSendMsgContent', {
+            initialValue: item.msgSendMsgContent,
             rules: [
               {
                 required: true,
-                type: 'boolean',
               },
             ],
-          })(<Radio.Group>
-            <Radio value>Male</Radio>
-            <Radio value={false}>Female</Radio>
-          </Radio.Group>)}
+          })(<Input type="textarea" />)}
         </FormItem>
-        <FormItem label="Age" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('age', {
-            initialValue: item.age,
-            rules: [
-              {
-                required: true,
-                type: 'number',
-              },
-            ],
-          })(<InputNumber min={18} max={100} />)}
+
+        <FormItem label="推送用户" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('msgVIN', {
+            initialValue: item.msgVIN,
+          })(<TreeSelect {...tProps} />)}
         </FormItem>
-        <FormItem label="Phone" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('phone', {
-            initialValue: item.phone,
-            rules: [
-              {
-                required: true,
-                pattern: /^1[34578]\d{9}$/,
-                message: 'The input is not valid phone!',
-              },
-            ],
-          })(<Input />)}
-        </FormItem>
-        <FormItem label="E-mail" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('email', {
-            initialValue: item.email,
-            rules: [
-              {
-                required: true,
-                pattern: /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/,
-                message: 'The input is not valid E-mail!',
-              },
-            ],
-          })(<Input />)}
-        </FormItem>
-        <FormItem label="Address" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('address', {
-            initialValue: item.address && item.address.split(' '),
-            rules: [
-              {
-                required: true,
-              },
-            ],
-          })(<Cascader
-            style={{ width: '100%' }}
-            options={city}
-            placeholder="Pick an address"
-          />)}
+
+        <FormItem label="提示：不选择推送用户的情况下默认全推！" labelCol={{span:18}} >
         </FormItem>
       </Form>
     </Modal>
