@@ -6,7 +6,7 @@ module.exports = {
   name: 'Qoros Web',
   prefix: 'Qoros',
   footerText: 'Qoros Web  © 2018 CMIOT',
-  logo: '/logo.svg',
+  logo: '/logo.png',
   iconFontCSS: '/iconfont.css',
   iconFontJS: '/iconfont.js',
   CORS: [],
