@@ -37,11 +37,17 @@ let database = [
     route: '/post',
   },
   {
-    id: '21',
+    id: '81',
     mpid: '-1',
-    bpid: '2',
-    name: 'User Detail',
+    bpid: '8',
+    name: '详细',
     route: '/user/:id',
+  },{
+    id: '11',
+    mpid: '-1',
+    bpid: '1',
+    name: '详细',
+    route: '/msgbox/:id',
   },
   {
     id: '3',

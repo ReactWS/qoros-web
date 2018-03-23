@@ -28,6 +28,10 @@ const Routers = function ({ history, app }) {
       models: () => [import('./models/msgbox')],
       component: () => import('./routes/msgbox/'),
     },{
+      path: '/msgbox/:id',
+      models: () => [import('./models/msgbox/detail')],
+      component: () => import('./routes/msgbox/detail/'),
+    },{
       path: '/user/:id',
       models: () => [import('./models/user/detail')],
       component: () => import('./routes/user/detail/'),
