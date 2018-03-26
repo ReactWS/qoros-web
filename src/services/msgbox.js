@@ -1,12 +1,12 @@
 import { request, config } from 'utils'
 
 const { api } = config
-const { msgboxList, msgbox } = api
+const { msgboxList, msgbox, msgboxSelect,msgboxUser2Vin} = api
 
 export function query (params) {
   return request({
     url: msgboxList,
-    method: 'get',
+    method: 'post',
     data: params,
   })
 }
@@ -21,15 +21,15 @@ export function remove (params) {
 
   export function query2 (params) {
     return request({
-      url: msgbox,
-      method: 'get',
+      url: msgboxSelect,
+      method: 'post',
       data: params,
     })
   }
 
   export function create (params) {
     return request({
-      url: msgbox.replace('/:id', ''),
+      url: msgboxAdd,
       method: 'post',
       data: params,
     })
@@ -49,4 +49,12 @@ export function remove (params) {
       method: 'patch',
       data: params,
     })
+}
+
+export function user2vin (params) {
+  return request({
+    url: msgboxUser2Vin,
+    method: 'get',
+    data: params,
+  })
 }

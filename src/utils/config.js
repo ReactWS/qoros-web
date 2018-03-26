@@ -35,11 +35,16 @@ module.exports = {
     //user: `${APIV3}/user/:id`,
 
     //消息盒子
-    msgboxList:`${APIV1}/msgbox/lists`,
-    // msgboxAdd:`${APIV1}/msgbox`,
-    // msgboxDelete:`${APIV1}/msgbox/:id`,
-    // msgboxUpdate:`${APIV1}/msgbox`,
-    // msgboxSelect:`${APIV1}/msgbox`,
+    //msgboxList:`${APIV1}/msgbox/lists`,
+
     msgbox:`${APIV1}/msgbox/:id`,
+
+    //消息盒子正式环境
+    msgboxList:`${APIV3}/msgBox/getAllRecord`,
+    msgboxAdd:`${APIV3}/msgBox/insert`,
+    msgboxDelete:`${APIV3}/msgBox/:id`,
+    msgboxUpdate:`${APIV3}/msgBox`,
+    msgboxSelect:`${APIV3}/msgBox/select`,
+    msgboxUser2Vin:`${APIV3}/msgBox/user2vin`,
   },
 }

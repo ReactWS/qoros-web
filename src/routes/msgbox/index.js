@@ -28,6 +28,7 @@ const Msgbox = ({location, dispatch, msgbox, loading}) => {
   const modalProps = {
     item: modalType === 'create' ? {} : currentItem,
     visible: modalVisible,
+    //loading: loading.effects['msgbox/user2vin'],
     maskClosable: false,
     confirmLoading: loading.effects['msgbox/update'],
     title: `${modalType === 'create' ? en2ch.zh.CreateTitile : en2ch.zh.UpdateTitile}`,
@@ -104,12 +105,17 @@ const Msgbox = ({location, dispatch, msgbox, loading}) => {
     },
     onAdd () {
       dispatch({
+           type: 'msgbox/user2vin'
+     })
+      dispatch({
         type: 'msgbox/showModal',
         payload: {
           modalType: 'create',
         },
       })
         .then(() => handleRefresh)
+
+
     },
     switchIsMotion () {
       dispatch({ type: 'msgbox/switchIsMotion' })

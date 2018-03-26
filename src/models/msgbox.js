@@ -4,7 +4,7 @@
 import modelExtend from 'dva-model-extend'
 import queryString from 'query-string'
 import { config } from 'utils'
-import { query,create, remove,remove2, update } from 'services/msgbox'
+import { query,create, remove,remove2, update ,user2vin} from 'services/msgbox'
 //import * as usersService from 'services/users'
 import { pageModel } from './common'
 
@@ -100,6 +100,15 @@ export default modelExtend(pageModel, {
       }
     },
 
+    * user2vin ({ payload ={}}, { select, call, put }) {
+      const data = yield call(user2vin, payload)
+      if (data.success) {
+        yield put({ type: 'changeUser2Vin' ,payload:{data:data.data}})
+      } else {
+        throw data
+      }
+    },
+
   },
 
   reducers: {
@@ -107,6 +116,7 @@ export default modelExtend(pageModel, {
     /**
     /*用于处理同步操作，唯一可以修改state的地方。由action触发
     */
+
     showModal (state, { payload }) {
       return { ...state, ...payload, modalVisible: true }
     },

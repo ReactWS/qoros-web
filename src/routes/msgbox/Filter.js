@@ -88,15 +88,16 @@ const Filter = ({
       </Col>
       <Col {...ColProps} xl={{ span: 4 }} md={{ span: 8 }} >
 
-          {getFieldDecorator('msgType', { initialValue: "0" })(
+          {getFieldDecorator('msgType', { initialValue: "99" })(
           <Select   onSearch={handleSubmit}>
               <Option value="0">通知</Option>
               <Option value="1">提醒</Option>
               <Option value="2">保养</Option>
               <Option value="3">其他</Option>
+              <Option value="99">全部</Option>
             </Select>
           )}
-        
+
       </Col>
       <Col {...ColProps} xl={{ span: 6 }} md={{ span: 8 }} sm={{ span: 12 }} id="createTimeRangePicker">
         <FilterItem label={en2ch.zh.Createtime}>

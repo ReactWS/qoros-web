@@ -39,6 +39,7 @@ const modal = ({
         key: item.key,
       }
       //data.address = data.address.join(' ')
+      //测试数据
       onOk(data)
     })
   }
@@ -56,6 +57,11 @@ const modal = ({
 
   const tProps = {
       treeData,
+      // loadData: () => {
+      //   dispatch({
+      //     type: `msgbox/user2vin`
+      //   })
+      // },
       onChange: onChange,
       multiple: true,
       treeCheckable: true,
@@ -66,7 +72,7 @@ const modal = ({
   return (
     <Modal {...modalOpts}>
       <Form layout="horizontal">
-        <FormItem label="消息类型" hasFeedback {...formItemLayout}>
+        <FormItem label="消息类型" hasFeedback labelCol={{span: 6,}} wrapperCol={{span: 16,}}>
           {getFieldDecorator('msgType',{
             initialValue: item.msgType,
             rules: [
@@ -80,6 +86,21 @@ const modal = ({
                 <Option value="1">提醒</Option>
                 <Option value="2">保养</Option>
                 <Option value="3">其他</Option>
+            </Select>
+          )}
+        </FormItem>
+        <FormItem label="推送类型" hasFeedback labelCol={{span: 6,}} wrapperCol={{span: 16,}}>
+          {getFieldDecorator('msgSendType',{
+            initialValue: item.msgSendType,
+            rules: [
+              {
+                required: true,
+              },
+            ],
+          })(
+            <Select  style={{ width: 120 }} >
+                <Option value="single">单推</Option>
+                <Option value="whole">全推</Option>
             </Select>
           )}
         </FormItem>
@@ -110,7 +131,8 @@ const modal = ({
           })(<TreeSelect {...tProps} />)}
         </FormItem>
 
-        <FormItem label="提示：不选择推送用户的情况下默认全推！" labelCol={{span:18}} >
+        <FormItem  >
+          <div>提示：不选择推送用户的情况下默认全推！</div>
         </FormItem>
       </Form>
     </Modal>
