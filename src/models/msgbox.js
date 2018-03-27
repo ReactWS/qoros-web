@@ -46,11 +46,13 @@ export default modelExtend(pageModel, {
     * query ({ payload = {} }, { call, put }) {
       //调用 query，成功后触发‘querySuccess’ action 保存到state
       const data = yield call(query, payload)
+      const datavins = yield call(user2vin, payload)
       if (data) {
         yield put({
           type: 'querySuccess',
           payload: {
             list: data.data,
+            dataUVs:datavins.data,
             pagination: {
               current: Number(payload.page) || 1,
               pageSize: Number(payload.pageSize) || 10,
@@ -63,7 +65,7 @@ export default modelExtend(pageModel, {
 
     * delete ({ payload }, { call, put, select }) {
       const data = yield call(remove2, { id: payload })
-      const { selectedRowKeys } = yield select(_ => _.user)
+      const { selectedRowKeys } = yield select(_ => _.msgbox)
       if (data.success) {
         yield put({ type: 'updateState', payload: { selectedRowKeys: selectedRowKeys.filter(_ => _ !== payload) } })
       } else {
@@ -103,11 +105,19 @@ export default modelExtend(pageModel, {
     * user2vin ({ payload ={}}, { select, call, put }) {
       const data = yield call(user2vin, payload)
       if (data.success) {
-        yield put({ type: 'changeUser2Vin' ,payload:{data:data.data}})
+        yield put({ type: 'querySuccess' ,payload:{dataUVs:data.data}})
       } else {
         throw data
       }
     },
+
+    * showmodal ({payload }, {select, call, put}) {
+      yield put({type: 'showModal',payload: payload })
+    },
+
+    * hidemodal ({payload }, {select, call, put}) {
+      yield put({type: 'hideModal'})
+    }
 
   },
 

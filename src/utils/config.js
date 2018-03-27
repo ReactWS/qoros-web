@@ -42,8 +42,8 @@ module.exports = {
     //消息盒子正式环境
     msgboxList:`${APIV3}/msgBox/getAllRecord`,
     msgboxAdd:`${APIV3}/msgBox/insert`,
-    msgboxDelete:`${APIV3}/msgBox/:id`,
-    msgboxUpdate:`${APIV3}/msgBox`,
+    msgboxDelete:`${APIV3}/msgBox/delete`,
+    msgboxUpdate:`${APIV3}/msgBox/update`,
     msgboxSelect:`${APIV3}/msgBox/select`,
     msgboxUser2Vin:`${APIV3}/msgBox/user2vin`,
   },

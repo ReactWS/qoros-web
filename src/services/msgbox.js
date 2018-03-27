@@ -1,7 +1,8 @@
 import { request, config } from 'utils'
 
 const { api } = config
-const { msgboxList, msgbox, msgboxSelect,msgboxUser2Vin} = api
+const { msgboxList, msgbox, msgboxSelect,
+  msgboxUser2Vin, msgboxAdd, msgboxDelete, msgboxUpdate} = api
 
 export function query (params) {
   return request({
@@ -37,7 +38,7 @@ export function remove (params) {
 
   export function remove2 (params) {
     return request({
-      url: msgbox,
+      url: msgboxDelete,
       method: 'delete',
       data: params,
     })

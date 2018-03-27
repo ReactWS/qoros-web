@@ -13,7 +13,7 @@ import en2ch from '../../utils/en2ch'
 const Msgbox = ({location, dispatch, msgbox, loading}) => {
   location.query = queryString.parse(location.search)
   const { query, pathname } = location
-  const {list, pagination, currentItem, modalVisible, modalType, isMotion, selectedRowKeys} = msgbox
+  const {list, pagination, currentItem, modalVisible, modalType, isMotion, selectedRowKeys,dataUVs } = msgbox
 
   const handleRefresh = (newQuery) => {
     dispatch(routerRedux.push({//执行dispatch 发送一条action给对应的model那边
@@ -27,6 +27,7 @@ const Msgbox = ({location, dispatch, msgbox, loading}) => {
 
   const modalProps = {
     item: modalType === 'create' ? {} : currentItem,
+    treeData: dataUVs,
     visible: modalVisible,
     //loading: loading.effects['msgbox/user2vin'],
     maskClosable: false,
@@ -38,11 +39,14 @@ const Msgbox = ({location, dispatch, msgbox, loading}) => {
         type: `msgbox/${modalType}`,
         payload: data,
       })
+      //.then(() => handleRefresh)
     },
     onCancel () {
       dispatch({
-        type: 'msgbox/hideModal',
+        type: 'msgbox/hidemodal',
       })
+      //.then(() => handleRefresh
+      //.then(() => console.log(1))
     },
   }
 
@@ -71,7 +75,7 @@ const Msgbox = ({location, dispatch, msgbox, loading}) => {
     },
     onEditItem (item) {
       dispatch({
-        type: 'msgbox/showModal',
+        type: 'msgbox/showmodal',
         payload: {
           modalType: 'update',
           currentItem: item,
@@ -104,17 +108,15 @@ const Msgbox = ({location, dispatch, msgbox, loading}) => {
       })
     },
     onAdd () {
+      //dispatch({type: 'msgbox/user2vin'})
       dispatch({
-           type: 'msgbox/user2vin'
-     })
-      dispatch({
-        type: 'msgbox/showModal',
+        type: 'msgbox/showmodal',
         payload: {
           modalType: 'create',
-        },
+        }
       })
-        .then(() => handleRefresh)
-
+      .then((value) => handleRefresh({...value, page:1}))
+      // .then(() => handleRefresh)
 
     },
     switchIsMotion () {

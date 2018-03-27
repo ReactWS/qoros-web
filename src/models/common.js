@@ -15,6 +15,7 @@ const pageModel = modelExtend(model, {
 
   state: {
     list: [],
+    dataUVs: [],
     pagination: {
       showSizeChanger: true,
       showQuickJumper: true,
@@ -27,10 +28,11 @@ const pageModel = modelExtend(model, {
 
   reducers: {
     querySuccess (state, { payload }) {
-      const { list, pagination } = payload
+      const { list, pagination, dataUVs } = payload
       return {
         ...state,
         list,
+        dataUVs,
         pagination: {
           ...state.pagination,
           ...pagination,

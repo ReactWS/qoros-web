@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Form, Input, InputNumber, Radio, Modal, Cascader, Select,TreeSelect } from 'antd'
 import city from '../../utils/city'
-import { treeData } from '../../tests/user2vin'
+//import { treeData } from '../../tests/user2vin'
 
 //const treeData = treeData
 const FormItem = Form.Item
@@ -21,6 +21,7 @@ const formItemLayout = {
 
 const modal = ({
   item = {},
+  treeData,
   onOk,
   form: {
     getFieldDecorator,
@@ -40,6 +41,7 @@ const modal = ({
       }
       //data.address = data.address.join(' ')
       //测试数据
+      data.msgCreateUserName = '西门丁'
       onOk(data)
     })
   }
@@ -56,7 +58,7 @@ const modal = ({
   }
 
   const tProps = {
-      treeData,
+      treeData: treeData,
       // loadData: () => {
       //   dispatch({
       //     type: `msgbox/user2vin`
@@ -126,8 +128,8 @@ const modal = ({
         </FormItem>
 
         <FormItem label="推送用户" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('msgVIN', {
-            initialValue: item.msgVIN,
+          {getFieldDecorator('msgUserName', {
+            initialValue: item.msgUserName,
           })(<TreeSelect {...tProps} />)}
         </FormItem>
 
