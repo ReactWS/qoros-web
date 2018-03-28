@@ -25,7 +25,7 @@ export default {
         id: 1,
         icon: 'mail',
         name: '消息盒子',
-        router: '/user',
+        router: '/msgbox',
       },
     ],
     menuPopoverVisible: false,
@@ -96,7 +96,7 @@ export default {
         })
         if (location.pathname === '/login') {
           yield put(routerRedux.push({
-            pathname: '/user',
+            pathname: '/msgbox',
           }))
         }
       } else if (config.openPages && config.openPages.indexOf(locationPathname) < 0) {

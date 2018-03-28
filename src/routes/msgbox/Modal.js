@@ -8,6 +8,7 @@ import city from '../../utils/city'
 const FormItem = Form.Item
 const SHOW_PARENT = TreeSelect.SHOW_PARENT
 const { Option } = Select
+const { TextArea } = Input
 
 
 const formItemLayout = {
@@ -22,6 +23,7 @@ const formItemLayout = {
 const modal = ({
   item = {},
   treeData,
+  user,
   onOk,
   form: {
     getFieldDecorator,
@@ -41,7 +43,7 @@ const modal = ({
       }
       //data.address = data.address.join(' ')
       //测试数据
-      data.msgCreateUserName = '西门丁'
+      data.msgCreateUserName = user.username
       onOk(data)
     })
   }
@@ -71,6 +73,8 @@ const modal = ({
       searchPlaceholder: '请选择要推送的用户',
     }
 
+
+
   return (
     <Modal {...modalOpts}>
       <Form layout="horizontal">
@@ -80,6 +84,7 @@ const modal = ({
             rules: [
               {
                 required: true,
+                message: '请选择消息类型！',
               },
             ],
           })(
@@ -97,6 +102,7 @@ const modal = ({
             rules: [
               {
                 required: true,
+                message: '请选择推送类型！',
               },
             ],
           })(
@@ -112,9 +118,10 @@ const modal = ({
             rules: [
               {
                 required: true,
+                message: '请输入推送标题！',
               },
             ],
-          })(<Input type="textarea" />)}
+          })(<TextArea rows={2} />)}
         </FormItem>
         <FormItem label="内容" hasFeedback {...formItemLayout}>
           {getFieldDecorator('msgSendMsgContent', {
@@ -122,20 +129,20 @@ const modal = ({
             rules: [
               {
                 required: true,
+                message: '请输入推送内容！',
               },
             ],
-          })(<Input type="textarea" />)}
+          })(<TextArea rows={6} />)}
         </FormItem>
 
         <FormItem label="推送用户" hasFeedback {...formItemLayout}>
           {getFieldDecorator('msgUserName', {
             initialValue: item.msgUserName,
+            //initialValue: [18051,11962],
           })(<TreeSelect {...tProps} />)}
         </FormItem>
 
-        <FormItem  >
-          <div>提示：不选择推送用户的情况下默认全推！</div>
-        </FormItem>
+
       </Form>
     </Modal>
   )

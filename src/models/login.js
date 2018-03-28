@@ -21,11 +21,11 @@ export default {
       if (data.success) {
         const { from } = locationQuery
         yield put({ type: 'app/query' })//用户登录成功
-        if (from && from !== '/login') {
+        if (from && from !== '/login' && from !== '/') {
           //console.log(from)  /
           yield put(routerRedux.push(from))
         } else {
-          yield put(routerRedux.push('/user'))
+          yield put(routerRedux.push('/msgbox'))
         }
       } else {
         throw data

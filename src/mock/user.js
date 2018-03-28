@@ -51,7 +51,7 @@ const adminUsers = [
   {
     id: 0,
     username: 'admin',
-    password: 'admin',
+    password: '123456',
     permissions: userPermission.ADMIN,
   }, {
     id: 1,
@@ -60,7 +60,7 @@ const adminUsers = [
     permissions: userPermission.DEFAULT,
   }, {
     id: 2,
-    username: '吴彦祖',
+    username: 'developer',
     password: '123456',
     permissions: userPermission.DEVELOPER,
   },

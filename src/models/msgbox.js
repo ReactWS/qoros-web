@@ -43,16 +43,18 @@ export default modelExtend(pageModel, {
   effects: {
     //用于处理异步操作和业务逻辑。不直接修改state。由action触发，可以触发action，
     //可以和服务器交互，可以获取全局state的数据等。
-    * query ({ payload = {} }, { call, put }) {
+    * query ({ payload = {} }, { call, put, select }) {
       //调用 query，成功后触发‘querySuccess’ action 保存到state
       const data = yield call(query, payload)
       const datavins = yield call(user2vin, payload)
+      const {user} = yield select(_ => _.app)
       if (data) {
         yield put({
           type: 'querySuccess',
           payload: {
             list: data.data,
             dataUVs:datavins.data,
+            user: user,
             pagination: {
               current: Number(payload.page) || 1,
               pageSize: Number(payload.pageSize) || 10,

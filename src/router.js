@@ -15,11 +15,12 @@ const Routers = function ({ history, app }) {
     component: () => import('./routes/error'),
   })
   const routes = [
-    {
-      path: '/dashboard',
-      models: () => [import('./models/dashboard')],
-      component: () => import('./routes/dashboard/'),
-    }, {
+    // {
+    //   path: '/dashboard',
+    //   models: () => [import('./models/dashboard')],
+    //   component: () => import('./routes/dashboard/'),
+    // },
+     {
       path: '/user',
       models: () => [import('./models/user')],
       component: () => import('./routes/user/'),
@@ -81,7 +82,7 @@ const Routers = function ({ history, app }) {
       <LocaleProvider locale={zhCN}>
         <App>
           <Switch>
-            <Route exact path="/" render={() => (<Redirect to="/user" />)} />
+            <Route exact path="/" render={() => (<Redirect to="/msgbox" />)} />
             {
             routes.map(({ path, ...dynamics }, key) => (
               <Route key={key}

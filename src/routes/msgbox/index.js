@@ -13,7 +13,7 @@ import en2ch from '../../utils/en2ch'
 const Msgbox = ({location, dispatch, msgbox, loading}) => {
   location.query = queryString.parse(location.search)
   const { query, pathname } = location
-  const {list, pagination, currentItem, modalVisible, modalType, isMotion, selectedRowKeys,dataUVs } = msgbox
+  const {list, pagination, currentItem, modalVisible, modalType, isMotion, selectedRowKeys,dataUVs,user } = msgbox
 
   const handleRefresh = (newQuery) => {
     dispatch(routerRedux.push({//执行dispatch 发送一条action给对应的model那边
@@ -28,6 +28,7 @@ const Msgbox = ({location, dispatch, msgbox, loading}) => {
   const modalProps = {
     item: modalType === 'create' ? {} : currentItem,
     treeData: dataUVs,
+    user: user,
     visible: modalVisible,
     //loading: loading.effects['msgbox/user2vin'],
     maskClosable: false,
@@ -39,7 +40,9 @@ const Msgbox = ({location, dispatch, msgbox, loading}) => {
         type: `msgbox/${modalType}`,
         payload: data,
       })
+      .then(() => handleRefresh({page:1}))
       //.then(() => handleRefresh)
+      //.then(() => console.log('show'))
     },
     onCancel () {
       dispatch({
@@ -115,8 +118,8 @@ const Msgbox = ({location, dispatch, msgbox, loading}) => {
           modalType: 'create',
         }
       })
-      .then((value) => handleRefresh({...value, page:1}))
-      // .then(() => handleRefresh)
+      //.then(() => handleRefresh({page:1}))
+      // .then(() => console.log('show'))
 
     },
     switchIsMotion () {
