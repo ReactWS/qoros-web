@@ -16,12 +16,12 @@ module.exports = {
   APIV2,
   APIV3,
   api: {
-    userLogin: `${APIV1}/user/login`,
-    userLogout: `${APIV1}/user/logout`,
+    //userLogin: `${APIV1}/user/login`,
+    //userLogout: `${APIV1}/user/logout`,
     userInfo: `${APIV1}/userInfo`,
     users: `${APIV1}/users`,
     posts: `${APIV1}/posts`,
-    user: `${APIV1}/user/:id`,
+    //user: `${APIV1}/user/:id`,
     dashboard: `${APIV1}/dashboard`,
     menus: `${APIV1}/menus`,
     weather: `${APIV1}/weather`,
@@ -38,7 +38,10 @@ module.exports = {
     //msgboxList:`${APIV1}/msgbox/lists`,
 
     msgbox:`${APIV1}/msgbox/:id`,
-
+    //用户管理
+    userLogin: `${APIV3}/user/login`,
+    userLogout: `${APIV3}/user/logout`,
+    user: `${APIV3}/user/author`,
     //消息盒子正式环境
     msgboxList:`${APIV3}/msgBox/getAllRecord`,
     msgboxAdd:`${APIV3}/msgBox/insert`,

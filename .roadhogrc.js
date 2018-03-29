@@ -12,6 +12,8 @@ export default {
   theme: "./theme.config.js",
   publicPath: `/${version}/`,
   outputPath: `./dist/${version}`,
+  //publicPath: `/qoros/dist/`,
+  //outputPath: `./dist/qoros/dist`,
   // 接口代理示例
   proxy: {
     "/api/v1/weather": {

@@ -43,7 +43,7 @@ export default modelExtend(pageModel, {
   effects: {
     //用于处理异步操作和业务逻辑。不直接修改state。由action触发，可以触发action，
     //可以和服务器交互，可以获取全局state的数据等。
-    * query ({ payload = {} }, { call, put }) {
+    * query ({ payload }, { call, put }) {
       //调用 query，成功后触发‘querySuccess’ action 保存到state
       const data = yield call(query, payload)
       if (data) {

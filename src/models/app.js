@@ -51,7 +51,8 @@ export default {
     },
 
     setup ({ dispatch }) {
-      dispatch({ type: 'query' })
+
+      dispatch({ type: 'query'})
       let tid
       window.onresize = () => {
         clearTimeout(tid)

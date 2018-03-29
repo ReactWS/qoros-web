@@ -28,41 +28,60 @@ let usersListData = Mock.mock({
 let database = usersListData.data
 //let database = usersListData.list
 
-const EnumRoleType = {
-  ADMIN: 'admin',
-  DEFAULT: 'guest',
-  DEVELOPER: 'developer',
-}
-
-const userPermission = {
-  DEFAULT: {
-    visit: ['1','8','11','81'],
-    role: EnumRoleType.DEFAULT,
-  },
-  ADMIN: {
-    role: EnumRoleType.ADMIN,
-  },
-  DEVELOPER: {
-    role: EnumRoleType.DEVELOPER,
-  },
-}
+// const EnumRoleType = {
+//   ADMIN: 'admin',
+//   DEFAULT: 'guest',
+//   DEVELOPER: 'developer',
+// }
+//
+// const userPermission = {
+//   DEFAULT: {
+//     visit: ['1','8','11','81'],
+//     role: EnumRoleType.DEFAULT,
+//   },
+//   ADMIN: {
+//     role: EnumRoleType.ADMIN,
+//   },
+//   DEVELOPER: {
+//     role: EnumRoleType.DEVELOPER,
+//   },
+// }
+//
+// const adminUsers = [
+//   {
+//     id: 0,
+//     username: 'admin',
+//     password: '123456',
+//     permissions: userPermission.ADMIN,
+//   }, {
+//     id: 1,
+//     username: 'guest',
+//     password: 'guest',
+//     permissions: userPermission.DEFAULT,
+//   }, {
+//     id: 2,
+//     username: 'developer',
+//     password: '123456',
+//     permissions: userPermission.DEVELOPER,
+//   },
+// ]
 
 const adminUsers = [
   {
     id: 0,
     username: 'admin',
     password: '123456',
-    permissions: userPermission.ADMIN,
+    permissions: {role: 'admin'},
   }, {
     id: 1,
     username: 'guest',
     password: 'guest',
-    permissions: userPermission.DEFAULT,
+    permissions: {visit:['1','8','11','81'], role: 'guest'},
   }, {
     id: 2,
     username: 'developer',
     password: '123456',
-    permissions: userPermission.DEVELOPER,
+    permissions: {role: 'developer'},
   },
 ]
 
