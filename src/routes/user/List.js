@@ -30,55 +30,44 @@ const List = ({
   }
 
   const columns = [
-    {
-      title: 'Avatar',
-      dataIndex: 'avatar',
-      key: 'avatar',
-      width: 64,
-      className: styles.avatar,
-      render: text => <img alt="avatar" width={24} src={text} />,
-    }, {
-      title: 'Name',
+     {
+      title: '用户名',
       dataIndex: 'name',
       key: 'name',
       render: (text, record) => <Link to={`user/${record.id}`}>{text}</Link>,
     }, {
-      title: 'NickName',
-      dataIndex: 'nickName',
-      key: 'nickName',
-    }, {
-      title: 'Age',
+      title: '年龄',
       dataIndex: 'age',
       key: 'age',
     }, {
-      title: 'Gender',
+      title: '性别',
       dataIndex: 'isMale',
       key: 'isMale',
       render: text => (<span>{text
-        ? 'Male'
-        : 'Female'}</span>),
+        ? '男'
+        : '女'}</span>),
     }, {
-      title: 'Phone',
+      title: '联系方式',
       dataIndex: 'phone',
       key: 'phone',
     }, {
-      title: 'Email',
+      title: '邮箱',
       dataIndex: 'email',
       key: 'email',
     }, {
-      title: 'Address',
+      title: '地址',
       dataIndex: 'address',
       key: 'address',
     }, {
-      title: 'CreateTime',
+      title: '创建时间',
       dataIndex: 'createTime',
       key: 'createTime',
     }, {
-      title: 'Operation',
+      title: '操作',
       key: 'operation',
       width: 100,
       render: (text, record) => {
-        return <DropOption onMenuClick={e => handleMenuClick(record, e)} menuOptions={[{ key: '1', name: 'Update' }, { key: '2', name: 'Delete' }]} />
+        return <DropOption onMenuClick={e => handleMenuClick(record, e)} menuOptions={[{ key: '1', name: '编辑' }, { key: '2', name: '删除' }]} />
       },
     },
   ]

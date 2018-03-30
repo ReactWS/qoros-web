@@ -27,9 +27,11 @@ export default {
       "pathRewrite": { "^/api/v2" : "" }
     },
     "/api/v3": {
-      "target": "http://localhost:8080/",
+      //"target": "http://localhost:8080/",
+      "target": "http://chinamobileqqlite.chinacloudapp.cn/",
       "changeOrigin": true,
-      "pathRewrite": { "^/api/v3" : "/qoros" }
+      //"pathRewrite": { "^/api/v3" : "/qoros" }
+      "pathRewrite": { "^/api/v3" : "" }
     }
   },
   env: {

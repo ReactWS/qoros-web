@@ -2,6 +2,8 @@ const APIV1 = '/api/v1'
 const APIV2 = '/api/v2'
 const APIV3 = '/api/v3'
 
+//const APIV3 = 'http://localhost:8080/qoros'
+
 module.exports = {
   name: 'Qoros Web',
   prefix: 'Qoros',
@@ -18,15 +20,15 @@ module.exports = {
   api: {
     //userLogin: `${APIV1}/user/login`,
     //userLogout: `${APIV1}/user/logout`,
-    userInfo: `${APIV1}/userInfo`,
-    users: `${APIV1}/users`,
-    posts: `${APIV1}/posts`,
+    //userInfo: `${APIV1}/userInfo`,
+    //users: `${APIV1}/users`,
+    //posts: `${APIV1}/posts`,
     //user: `${APIV1}/user/:id`,
-    dashboard: `${APIV1}/dashboard`,
-    menus: `${APIV1}/menus`,
-    weather: `${APIV1}/weather`,
-    v1test: `${APIV1}/test`,
-    v2test: `${APIV2}/qoros/msgBox/getAllRecord`,
+    //dashboard: `${APIV1}/dashboard`,
+    //menus: `${APIV1}/menus`,
+    //weather: `${APIV1}/weather`,
+    //v1test: `${APIV1}/test`,
+    //v2test: `${APIV2}/qoros/msgBox/getAllRecord`,
 
     //线上调用接口
     //users: `${APIV3}/msgBox/getAllRecord`,
@@ -37,11 +39,13 @@ module.exports = {
     //消息盒子
     //msgboxList:`${APIV1}/msgbox/lists`,
 
-    msgbox:`${APIV1}/msgbox/:id`,
+    //msgbox:`${APIV1}/msgbox/:id`,
     //用户管理
     userLogin: `${APIV3}/user/login`,
     userLogout: `${APIV3}/user/logout`,
     user: `${APIV3}/user/author`,
+    menus: `${APIV3}/menu/menus`,
+    users: `${APIV3}/user/getAllUsers`,
     //消息盒子正式环境
     msgboxList:`${APIV3}/msgBox/getAllRecord`,
     msgboxAdd:`${APIV3}/msgBox/insert`,

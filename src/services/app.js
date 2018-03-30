@@ -14,7 +14,7 @@ export function login (params) {
 export function logout (params) {
   return request({
     url: userLogout,
-    method: 'get',
+    method: 'post',
     data: params,
   })
 }

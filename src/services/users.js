@@ -6,7 +6,7 @@ const { users } = api
 export function query (params) {
   return request({
     url: users,
-    method: 'get',
+    method: 'post',
     data: params,
   })
 }
