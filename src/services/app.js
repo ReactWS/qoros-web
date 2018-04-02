@@ -21,11 +21,8 @@ export function logout (params) {
 
 export function query (params) {
   return request({
-    //url: user.replace('/:id', ''),
     url: user,
-    //url: user.replace('/:id', '/author'),
     method: 'get',
-    //method: 'post',
     data: params,
   })
 }

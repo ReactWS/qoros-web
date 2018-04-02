@@ -2,7 +2,7 @@ const APIV1 = '/api/v1'
 const APIV2 = '/api/v2'
 const APIV3 = '/api/v3'
 
-//const APIV3 = 'http://localhost:8080/qoros'
+//const APIV3 = '/api'
 
 module.exports = {
   name: 'Qoros Web',
