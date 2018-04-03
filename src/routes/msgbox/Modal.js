@@ -138,7 +138,7 @@ const modal = ({
         <FormItem label="推送用户" hasFeedback {...formItemLayout}>
           {getFieldDecorator('msgUserName', {
             initialValue: item.msgUserName,
-            //initialValue: [18051,11962],
+            //initialValue: "['18051','11962']",
           })(<TreeSelect {...tProps} />)}
         </FormItem>
 

@@ -33,6 +33,10 @@ const Routers = function ({ history, app }) {
       models: () => [import('./models/msgbox/detail')],
       component: () => import('./routes/msgbox/detail/'),
     },{
+     path: '/apk',
+     models: () => [import('./models/apk')],
+     component: () => import('./routes/apk/'),
+   },{
       path: '/user/:id',
       models: () => [import('./models/user/detail')],
       component: () => import('./routes/user/detail/'),

@@ -53,5 +53,11 @@ module.exports = {
     msgboxUpdate:`${APIV3}/msgBox/update`,
     msgboxSelect:`${APIV3}/msgBox/select`,
     msgboxUser2Vin:`${APIV3}/msgBox/user2vin`,
+    //静默安装
+    apkList:`${APIV3}/apkPackage/listAllInfo`,
+    apkAdd:`${APIV3}/apkPackage/uploadApk`,
+    apkDelete:`${APIV3}/apkPackage/delete`,
+    apkUpdate:`${APIV3}/apkPackage/autoInsatll`,
+    //apkSelect:`${APIV3}/`,
   },
 }

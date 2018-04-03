@@ -36,6 +36,7 @@ const Login = ({
             rules: [
               {
                 required: true,
+                message: '请输入用户名！',
               },
             ],
           })(<Input onPressEnter={handleOk} placeholder="用户名" />)}
@@ -45,6 +46,7 @@ const Login = ({
             rules: [
               {
                 required: true,
+                message: '请输入密码！',
               },
             ],
           })(<Input type="password" onPressEnter={handleOk} placeholder="密码" />)}
