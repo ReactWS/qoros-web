@@ -16,6 +16,7 @@ const pageModel = modelExtend(model, {
   state: {
     list: [],
     dataUVs: [],
+    fileList: [],
     user: {},
     pagination: {
       showSizeChanger: true,
