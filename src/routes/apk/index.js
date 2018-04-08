@@ -61,10 +61,10 @@ const Apk = ({location, dispatch, apk, loading}) => {
         pageSize: page.pageSize,
       })
     },
-    onDeleteItem (id) {
+    onDeleteItem (record) {
       dispatch({
         type: 'apk/delete',
-        payload: id,
+        payload: record,
       })
         .then(() => {
           handleRefresh({
@@ -72,15 +72,16 @@ const Apk = ({location, dispatch, apk, loading}) => {
           })
         })
     },
-    onEditItem (item) {
+    onEditItem (record) {
       dispatch({
-        type: 'apk/showmodal',
-        payload: {
-          modalType: 'update',
-          currentItem: item,
-        },
+        type: 'apk/update',
+        payload: record,
       })
-        .then(() => handleRefresh)
+        .then(() => {
+          handleRefresh({
+            page: (list.length === 1 && pagination.current > 1) ? pagination.current - 1 : pagination.current,
+        })
+      })
     },
     rowSelection: {
       selectedRowKeys,
@@ -144,6 +145,17 @@ const Apk = ({location, dispatch, apk, loading}) => {
         },
       });
       //return newFileList;
+    },
+    onChangeFile(info){
+      if (info.file.status !== 'uploading') {
+        console.log(info.file, info.fileList);
+      }
+      if (info.file.status === 'done') {
+        console.log(`${info.file.name} file uploaded successfully`);
+        handleRefresh({page:1})
+      } else if (info.file.status === 'error') {
+        console.log(`${info.file.name} file upload failed.`);
+      }
     },
   }
 

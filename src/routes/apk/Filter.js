@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import { FilterItem } from 'components'
-import { Form,Upload, Icon,Button, Row, Col, DatePicker, Input, Cascader, Switch,Select } from 'antd'
+import { Form,Upload, Icon,Button, Row, Col, DatePicker, Input, Cascader, Switch,Select,message } from 'antd'
 import config from '../../utils/config'
 import en2ch from '../../utils/en2ch';
 
@@ -40,6 +40,7 @@ const Filter = ({
   handleUpload,
   beforeUploadMethod,
   onRemoveMethod,
+  onChangeFile,
   form: {
     getFieldDecorator,
     getFieldsValue,
@@ -77,47 +78,40 @@ const Filter = ({
   const { packageFileName } = filter
 
   const UploadProps = {
-    //action: 'http://chinamobileqqlite.chinacloudapp.cn/qoros/apkPackage/uploadApk',
+    name: 'file',
     action: apkAdd,
-    onRemove: (file) => {
-      onRemoveMethod(file);
-
+    headers: {
+      authorization: 'authorization-text',
     },
+    showUploadList: false,
     beforeUpload: (file) => {
-        beforeUploadMethod(file);
-        return false;
-      },
-      fileList: fileList,
+      const isAPK = file.type === 'application/vnd.android.package-archive';
+      if (!isAPK) {
+        message.error('只能上传 APK 文件哦！');
+      }
+      return isAPK;
+    },
+    onChange: (infos) => {
+      onChangeFile(infos);
+    },
+    //headers: {'Content-Type':'multipart/form-data'},
+    // onRemove: (file) => {
+    //   onRemoveMethod(file);
+    //
+    // },
+    // beforeUpload: (file) => {
+    //     beforeUploadMethod(file);
+    //     return false;
+    //   },
+    //   fileList: fileList,
   }
 
   return (
     <div>
-    <Row gutter={20}>
-      <Col xl={{span: 20}} md={{span: 8}}>
-        <div>
-        <Upload {...UploadProps}>
-          <Button>
-            <Icon type="upload" /> 选择文件
-          </Button>
-        </Upload>
-        <Button
-          style={{ marginTop: '16px',marginBottom: '16px'}}
-          type="primary"
-          onClick={handleUpload}
-          disabled={fileList.length === 0}
-          loading={uploading}
-        >
-          {uploading ? '上传中' : '开始上传' }
-        </Button>
-      </div>
-      </Col>
-    </Row>
     <Row gutter={24}>
       <Col {...ColProps} xl={{ span: 4 }} md={{ span: 8 }}>
         {getFieldDecorator('packageFileName', { initialValue: packageFileName })(<Search placeholder="文件名" onSearch={handleSubmit} />)}
       </Col>
-
-
       <Col {...TwoColProps} xl={{ span: 10 }} md={{ span: 24 }} sm={{ span: 24 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
           <div>
@@ -130,6 +124,15 @@ const Filter = ({
           </div>
         </div>
       </Col>
+
+      <Col xl={{span: 20}} md={{span: 8}}>
+        <Upload {...UploadProps}>
+          <Button>
+            <Icon type="upload" /> 选择文件
+          </Button>
+        </Upload>
+      </Col>
+
     </Row>
   </div>
   )

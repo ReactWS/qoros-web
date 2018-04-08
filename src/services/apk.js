@@ -21,7 +21,7 @@ export function create (params) {
 export function remove (params) {
     return request({
       url: apkDelete,
-      method: 'delete',
+      method: 'post',
       data: params,
     })
   }
@@ -29,7 +29,7 @@ export function remove (params) {
 export function update (params) {
     return request({
       url: apkUpdate,
-      method: 'patch',
+      method: 'post',
       data: params,
     })
 }

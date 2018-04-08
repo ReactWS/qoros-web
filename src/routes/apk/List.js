@@ -18,17 +18,22 @@ const List = ({
 
   const handleMenuClick = (record, e) => {
     if (e.key === '1') {
-      //onEditItem(record)
-      console.log('更新...');
+      record.autoInstall = 2
+      onEditItem(record)
+      //console.log('更新...');
+    }else if(e.key === '9'){
+      record.autoInstall = 1
+      onEditItem(record)
     } else if (e.key === '2') {
       confirm({
         title: en2ch.zh.DeleteTips,
         onOk () {
-          onDeleteItem(record.id)
+          onDeleteItem(record)
         },
       })
     }else if(e.key === '3'){
-      console.log('下载...');
+      //console.log('下载...');
+      window.open(record.packageUrl);
     }
   }
 
@@ -70,7 +75,11 @@ const List = ({
       key: 'operation',
       width: 100,
       render: (text, record) => {
-        return <DropOption onMenuClick={e => handleMenuClick(record, e)} menuOptions={[{ key: '1', name: '禁用' }, { key: '2', name: '删除' }, { key: '3', name: '下载' }]} />
+        if(record.autoInstall == 1){
+          return <DropOption onMenuClick={e => handleMenuClick(record, e)} menuOptions={[{ key: '1', name: '禁用' }, { key: '2', name: '删除' }, { key: '3', name: '下载' }]} />
+        }else if(record.autoInstall == 2){
+          return <DropOption onMenuClick={e => handleMenuClick(record, e)} menuOptions={[{ key: '9', name: '启用' }, { key: '2', name: '删除' }, { key: '3', name: '下载' }]} />
+        }
       },
     },
   ]

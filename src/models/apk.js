@@ -55,7 +55,8 @@ export default modelExtend(pageModel, {
     },
 
     * delete ({ payload }, { call, put, select }) {
-      const data = yield call(remove, { id: payload })
+      const {packageFileName , packageName} = payload
+      const data = yield call(remove, { packageFileName , packageName })
       const { selectedRowKeys } = yield select(_ => _.apk)
       if (data.success) {
         yield put({ type: 'updateState', payload: { selectedRowKeys: selectedRowKeys.filter(_ => _ !== payload) } })
@@ -75,11 +76,11 @@ export default modelExtend(pageModel, {
     },
 
     * update ({ payload }, { select, call, put }) {
-      const id = yield select(({ user }) => user.currentItem.id)
-      const newUser = { ...payload, id }
-      const data = yield call(update, newUser)
+      const {packageName , autoInstall} = payload
+      const data = yield call(update, {packageName,autoInstall})
+      const { selectedRowKeys } = yield select(_ => _.apk)
       if (data.success) {
-        yield put({ type: 'hideModal' })
+        yield put({ type: 'updateState', payload: { selectedRowKeys: selectedRowKeys.filter(_ => _ !== payload) } })
       } else {
         throw data
       }
