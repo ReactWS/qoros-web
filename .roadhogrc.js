@@ -26,11 +26,11 @@ export default {
       "changeOrigin": true,
       "pathRewrite": { "^/api/v2" : "" }
     },
-    "/api/v3": {
+    "/api": {
       "target": "http://localhost:8080/",
       //"target": "http://chinamobileqqlite.chinacloudapp.cn:8080/",
       "changeOrigin": true,
-      "pathRewrite": { "^/api/v3" : "/qoros" }
+      "pathRewrite": { "^/api" : "/qoros" }
     }
   },
   env: {

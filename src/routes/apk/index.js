@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { routerRedux } from 'dva/router'
 import { connect } from 'dva'
-import { Row, Col, Button, Popconfirm } from 'antd'
+import { Row, Col, Button, Popconfirm,message } from 'antd'
 import { Page } from 'components'
 import queryString from 'query-string'
 import List from './List'
@@ -147,14 +147,11 @@ const Apk = ({location, dispatch, apk, loading}) => {
       //return newFileList;
     },
     onChangeFile(info){
-      if (info.file.status !== 'uploading') {
-        console.log(info.file, info.fileList);
-      }
       if (info.file.status === 'done') {
-        console.log(`${info.file.name} file uploaded successfully`);
         handleRefresh({page:1})
+        message.success(`${info.file.name} 文件上传成功.`);
       } else if (info.file.status === 'error') {
-        console.log(`${info.file.name} file upload failed.`);
+        message.error(`${info.file.name} 文件上传失败.`);
       }
     },
   }
@@ -181,9 +178,7 @@ const Apk = ({location, dispatch, apk, loading}) => {
         <Row style={{ marginBottom: 24, textAlign: 'right', fontSize: 13 }}>
           <Col>
             {`选中 ${selectedRowKeys.length} 条 `}
-            <Popconfirm title={en2ch.zh.DeleteTips} placement="left" onConfirm={handleDeleteItems}>
-              <Button type="primary" style={{ marginLeft: 8 }}>全部删除</Button>
-            </Popconfirm>
+
           </Col>
         </Row>
       }

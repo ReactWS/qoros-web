@@ -149,9 +149,6 @@ const Msgbox = ({location, dispatch, msgbox, loading}) => {
         <Row style={{ marginBottom: 24, textAlign: 'right', fontSize: 13 }}>
           <Col>
             {`选中 ${selectedRowKeys.length} 条 `}
-            <Popconfirm title={en2ch.zh.DeleteTips} placement="left" onConfirm={handleDeleteItems}>
-              <Button type="primary" style={{ marginLeft: 8 }}>全部删除</Button>
-            </Popconfirm>
           </Col>
         </Row>
       }

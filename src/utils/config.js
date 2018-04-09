@@ -1,8 +1,8 @@
 const APIV1 = '/api/v1'
 const APIV2 = '/api/v2'
-const APIV3 = '/api/v3'
+//const APIV3 = '/api/v3'
 
-//const APIV3 = '/api'
+const APIV3 = '/api'
 
 module.exports = {
   name: 'Qoros Web',
