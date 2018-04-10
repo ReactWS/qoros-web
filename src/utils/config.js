@@ -44,6 +44,9 @@ module.exports = {
     userLogin: `${APIV3}/user/login`,
     userLogout: `${APIV3}/user/logout`,
     user: `${APIV3}/user/author`,
+    userSelect: `${APIV3}/user/select`,
+    userAdd: `${APIV3}/user/insert`,
+    userUpdate: `${APIV3}/user/update`,
     menus: `${APIV3}/menu/menus`,
     users: `${APIV3}/user/getAllUsers`,
     //消息盒子正式环境

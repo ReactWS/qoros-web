@@ -1,19 +1,19 @@
 import { request, config } from 'utils'
 
 const { api } = config
-const { user } = api
+const { user, userSelect, userAdd, userUpdate } = api
 
 export function query (params) {
   return request({
-    url: user,
-    method: 'get',
+    url: userSelect,
+    method: 'post',
     data: params,
   })
 }
 
 export function create (params) {
   return request({
-    url: user.replace('/:id', ''),
+    url: userAdd,
     method: 'post',
     data: params,
   })
@@ -29,7 +29,7 @@ export function remove (params) {
 
 export function update (params) {
   return request({
-    url: user,
+    url: userUpdate,
     method: 'patch',
     data: params,
   })
