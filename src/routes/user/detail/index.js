@@ -16,25 +16,28 @@ const Detail = ({ userDetail }) => {
          <div>{String(data["name"])}</div>
        </div>)
     }
+    if(data["password"]){
+      content.push(<div key="password" className={styles.item}>
+         <div>密码</div>
+         <div>{String(data["name"])}</div>
+       </div>)
+    }
     if(data["age"]){
       content.push(<div key="age" className={styles.item}>
          <div>年龄</div>
          <div>{String(data["age"])}</div>
        </div>)
     }
-    switch(data["isMale"]){
-      case 0:
-      content.push(<div key="isMale" className={styles.item}>
-         <div>性别</div>
-         <div>女</div>
-       </div>)
-      break;
-      case 1:
-      content.push(<div key="isMale" className={styles.item}>
-         <div>性别</div>
-         <div>男</div>
-       </div>)
-      break;
+    if(data["isMale"]){
+        content.push(<div key="isMale" className={styles.item}>
+           <div>性别</div>
+           <div>男</div>
+         </div>)
+    }else{
+        content.push(<div key="isMale" className={styles.item}>
+           <div>性别</div>
+           <div>女</div>
+         </div>)
     }
 
     if(data["phone"]){
@@ -61,11 +64,32 @@ const Detail = ({ userDetail }) => {
          <div>{String(data["createTime"])}</div>
        </div>)
     }
-    if(data["roleId"]){
+    // if(data["roleId"]){
+    //   content.push(<div key="roleId" className={styles.item}>
+    //      <div>访问权限</div>
+    //      <div>{String(data["roleId"])}</div>
+    //    </div>)
+    // }
+
+    switch(data["roleId"]){
+      case 4:
       content.push(<div key="roleId" className={styles.item}>
          <div>访问权限</div>
-         <div>{String(data["roleId"])}</div>
+         <div>普通用户</div>
        </div>)
+      break;
+      case 2:
+      content.push(<div key="roleId" className={styles.item}>
+         <div>访问权限</div>
+         <div>管理员</div>
+       </div>)
+      break;
+      case 1:
+      content.push(<div key="roleId" className={styles.item}>
+         <div>访问权限</div>
+         <div>超级用户</div>
+       </div>)
+      break;
     }
 
   }

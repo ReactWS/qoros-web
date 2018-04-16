@@ -81,9 +81,11 @@ export default modelExtend(pageModel, {
     },
 
     * create ({ payload }, { call, put }) {
+      const { onOkCallBack } = payload
       const data = yield call(create, payload)
       if (data.success) {
         yield put({ type: 'hideModal' })
+        !!onOkCallBack && onOkCallBack(data)
       } else {
         throw data
       }
@@ -98,6 +100,14 @@ export default modelExtend(pageModel, {
       } else {
         throw data
       }
+    },
+
+    * showmodal ({payload }, {select, call, put}) {
+      yield put({type: 'showModal',payload: payload })
+    },
+
+    * hidemodal ({payload }, {select, call, put}) {
+      yield put({type: 'hideModal'})
     },
 
   },

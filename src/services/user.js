@@ -1,7 +1,7 @@
 import { request, config } from 'utils'
 
 const { api } = config
-const { user, userSelect, userAdd, userUpdate } = api
+const { user,userDelete, userSelect, userAdd, userUpdate } = api
 
 export function query (params) {
   return request({
@@ -21,7 +21,7 @@ export function create (params) {
 
 export function remove (params) {
   return request({
-    url: user,
+    url: userDelete,
     method: 'delete',
     data: params,
   })

@@ -39,10 +39,18 @@ const User = ({
         type: `user/${modalType}`,
         payload: data,
       })
+      // .then(() => {
+      //   onOkCallBack(reps)
+      // })
+      .then(() => {
+        handleRefresh({
+          page: (list.length === 1 && pagination.current > 1) ? pagination.current - 1 : pagination.current,
+        })
+      })
     },
     onCancel () {
       dispatch({
-        type: 'user/hideModal',
+        type: 'user/hidemodal',
       })
     },
   }
@@ -73,13 +81,13 @@ const User = ({
     },
     onEditItem (item) {
       dispatch({
-        type: 'user/showModal',
+        type: 'user/showmodal',
         payload: {
           modalType: 'update',
           currentItem: item,
         },
       })
-        .then(() => handleRefresh)
+      .then(() => handleRefresh)
     },
     rowSelection: {
       selectedRowKeys,
@@ -107,12 +115,16 @@ const User = ({
     },
     onAdd () {
       dispatch({
-        type: 'user/showModal',
+        type: 'user/showmodal',
         payload: {
           modalType: 'create',
         },
       })
-        .then(() => handleRefresh)
+      // .then(() => {
+      //   handleRefresh({
+      //     page: 1,
+      //   })
+      // })
     },
     switchIsMotion () {
       dispatch({ type: 'user/switchIsMotion' })
@@ -140,10 +152,8 @@ const User = ({
         selectedRowKeys.length > 0 &&
         <Row style={{ marginBottom: 24, textAlign: 'right', fontSize: 13 }}>
           <Col>
-            {`Selected ${selectedRowKeys.length} items `}
-            <Popconfirm title={en2ch.zh.DeleteTips} placement="left" onConfirm={handleDeleteItems}>
-              <Button type="primary" style={{ marginLeft: 8 }}>全部删除</Button>
-            </Popconfirm>
+            {`选中 ${selectedRowKeys.length} 记录 `}
+
           </Col>
         </Row>
       }
