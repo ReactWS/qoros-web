@@ -1,5 +1,5 @@
 /* global window */
-//用来接收你发送的action
+// 用来接收你发送的action
 
 import modelExtend from 'dva-model-extend'
 import queryString from 'query-string'
@@ -23,11 +23,11 @@ export default modelExtend(pageModel, {
   },
 
   subscriptions: {
-    //subscription是订阅，用于订阅一个数据源，然后根据需要dispatch相应的
-    //action在app.start()时被执行，数据源可以是当前的时间，服务器的websocket连接，
-    //keyboard输入，geolocation变化，history路由变化等。
+    // subscription是订阅，用于订阅一个数据源，然后根据需要dispatch相应的
+    // action在app.start()时被执行，数据源可以是当前的时间，服务器的websocket连接，
+    // keyboard输入，geolocation变化，history路由变化等。
     setup ({ dispatch, history }) {
-      //监听history变化，当进入‘/user’时触发‘query’ action
+      // 监听history变化，当进入‘/user’时触发‘query’ action
       history.listen((location) => {
         if (location.pathname === '/user') {
           const payload = queryString.parse(location.search) || { page: 1, pageSize: 10 }
@@ -41,10 +41,10 @@ export default modelExtend(pageModel, {
   },
 
   effects: {
-    //用于处理异步操作和业务逻辑。不直接修改state。由action触发，可以触发action，
-    //可以和服务器交互，可以获取全局state的数据等。
-    * query ({ payload = {}}, { call, put }) {
-      //调用 query，成功后触发‘querySuccess’ action 保存到state
+    // 用于处理异步操作和业务逻辑。不直接修改state。由action触发，可以触发action，
+    // 可以和服务器交互，可以获取全局state的数据等。
+    * query ({ payload = {} }, { call, put }) {
+      // 调用 query，成功后触发‘querySuccess’ action 保存到state
       const data = yield call(query, payload)
       if (data) {
         yield put({
@@ -102,18 +102,18 @@ export default modelExtend(pageModel, {
       }
     },
 
-    * showmodal ({payload }, {select, call, put}) {
-      yield put({type: 'showModal',payload: payload })
+    * showmodal ({ payload }, { select, call, put }) {
+      yield put({ type: 'showModal', payload })
     },
 
-    * hidemodal ({payload }, {select, call, put}) {
-      yield put({type: 'hideModal'})
+    * hidemodal ({ payload }, { select, call, put }) {
+      yield put({ type: 'hideModal' })
     },
 
   },
 
   reducers: {
-    //保存数据到state
+    // 保存数据到state
     /**
     /*用于处理同步操作，唯一可以修改state的地方。由action触发
     */

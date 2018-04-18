@@ -95,6 +95,7 @@ export default function request (options) {
         list: data,
       }
     }
+    // message.info(data.message)
     return Promise.resolve({
       success: true,
       message: statusText,
